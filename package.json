@@ -1,0 +1,24 @@
+{
+  "name": "hue-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hue.js",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "https": "^1.0.0",
+    "request": "^2.88.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CactusKing101/Hue-Bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CactusKing101/Hue-Bot/issues"
+  },
+  "homepage": "https://github.com/CactusKing101/Hue-Bot#readme"
+}
