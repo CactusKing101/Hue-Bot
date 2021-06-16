@@ -81,10 +81,10 @@ client.on('message', async msg => {
         group(msg, true);
         return;
       } else {
-        if (isNaN(args[0])) return msg.channel.send(`Invalid arguments\n${prefix}on bulb(1-4 || all)\n\`${prefix}on <1-4 || all>\``);
+        if (isNaN(args[0])) return msg.channel.send(`Invalid arguments\n${prefix}on bulb(1-4 \|\| all)\n\`${prefix}on <1-4 \|\| all>\``);
         if (args[0] >= 0 && args[0] <= 4) {
           light(msg, true, Math.floor(args[0]));
-        } else return msg.channel.send(`Invalid arguments\n${prefix}on bulb(1-4 || all)\n\`${prefix}on <1-4 || all>\``);
+        } else return msg.channel.send(`Invalid arguments\n${prefix}on bulb(1-4 \|\| all)\n\`${prefix}on <1-4 \|\| all>\``);
       }
     } else return msg.channel.send(`You need the \`${config.role_name}\` role to use this`);
   } else if (command == 'off') {
@@ -93,10 +93,10 @@ client.on('message', async msg => {
         group(msg, false);
         return
       } else {
-        if (isNaN(args[0])) return msg.channel.send(`Invalid arguments\n${prefix}off bulb(1-4 || all)\n\`${prefix}off <1-4 || all>\``);
+        if (isNaN(args[0])) return msg.channel.send(`Invalid arguments\n${prefix}off bulb(1-4 \|\| all)\n\`${prefix}off <1-4 \|\| all>\``);
         if (args[0] >= 0 && args[0] <= 4) {
           light(msg, false, Math.floor(args[0]));
-        } else return msg.channel.send(`Invalid arguments\n${prefix}off bulb(1-4 || all)\n\`${prefix}off <1-4 || all>\``);
+        } else return msg.channel.send(`Invalid arguments\n${prefix}off bulb(1-4 \|\| all)\n\`${prefix}off <1-4 \|\| all>\``);
       }
     } else return msg.channel.send(`You need the \`${config.role_name}\` role to use this`);
   } else if (command == 'color') {
