@@ -111,7 +111,7 @@ client.on('message', async msg => {
         } else msg.channel.send(`Invalid arguments\n${prefix}color all hue(1-65535) brightness(0-255) saturation(0-255)\n\`${prefix}color all <1-65535> [0-255] [0-255]\``);
         return
       } else {
-        if (isNaN(args[0])) return msg.channel.send(`Invalid arguments\n${prefix}color bulb(all || 1-4) hue(1-65535) brightness(0-255) saturation(0-255)\n\`${prefix}color <all || 1-4> <1-65535> [0-255] [0-255]\``);
+        if (isNaN(args[0])) return msg.channel.send(`Invalid arguments\n${prefix}color bulb(all \|\| 1-4) hue(1-65535) brightness(0-255) saturation(0-255)\n\`${prefix}color <all \|\| 1-4> <1-65535> [0-255] [0-255]\``);
         if (args.length == 2 && args[1] >= 0 && args[1] <= 65536) {
           light(msg, true, Math.floor(args[0]), args[1]);
         } else if (args.length == 3 && args[1] >= 0 && args[1] <= 65536 && args[2] >= 0 && args[2] <= 255) {
@@ -121,6 +121,8 @@ client.on('message', async msg => {
         } else msg.channel.send(`Invalid arguments\n${prefix}color bulb(1-4) hue(1-65535) brightness(0-255) saturation(0-255)\n\`${prefix}color <1-4> <1-65535> [0-255] [0-255]\``);
       }
     } else return msg.channel.send(`You need the \`${config.role_name}\` role to use this`);
+  } else if (command == 'hue') {
+    msg.channel.send(`The commands are:\n${prefix}color\n${prefix}on\n${prefix}off`)
   }
 });
 
