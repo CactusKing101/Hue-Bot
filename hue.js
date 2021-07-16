@@ -142,7 +142,6 @@ function group(iId, iToken, on, hue = 0, bri = 255, sat = 255) {
 };
 
 client.ws.on('INTERACTION_CREATE', interaction => {
-  console.log(interaction.member.roles);
   try {
     if (interaction.data.name == 'on') {
       if (interaction.member.roles.includes(config.role_id)) {
