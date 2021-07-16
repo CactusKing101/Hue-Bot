@@ -143,52 +143,56 @@ function group(iId, iToken, on, hue = 0, bri = 255, sat = 255) {
 
 client.ws.on('INTERACTION_CREATE', interaction => {
   console.log(interaction.data.options);
-  if (interaction.data.name == 'on') {
-    if (interaction.member.roles.get(config.role_id)) {
-      if (interaction.data.options[0].value == 'all') {
-        group(interaction.id, interaction.token, true);
-        return;
-      } else {
-        if (isNaN(interaction.data.options[0].value)) return reply(interaction.id, interaction.token, `Invalid arguments`);
-        if (interaction.data.options[0].value >= 0 && interaction.data.options[0].value <= 4) {
-          light(interaction.id, interaction.token, true, Math.floor(interaction.data.options[1].value));
-        } else return reply(interaction.id, interaction.token, `Invalid arguments`);
-      }
-    } else return eReply(interaction.id, interaction.token, `You need the \`${config.role_name}\` role to use this`);
-  } else if (interaction.data.name == 'off') {
-    if (interaction.member.roles.get(config.role_id)) {
-      if (interaction.data.options[0].value == 'all') {
-        group(interaction.id, interaction.token, false);
-        return;
-      } else {
-        if (isNaN(interaction.data.options[0].value)) return reply(interaction.id, interaction.token, `Invalid arguments`);
-        if (interaction.data.options[0].value >= 0 && interaction.data.options[0].value <= 4) {
-          light(interaction.id, interaction.token, false, Math.floor(interaction.data.options[0].value));
-        } else return reply(interaction.id, interaction.token, `Invalid arguments`);
-      }
-    } else return eReply(interaction.id, interaction.token, `You need the \`${config.role_name}\` role to use this`);
-  } else if (interaction.data.name == 'color') {
-    if (interaction.member.roles.get(config.role_id)) {
-      if (interaction.data.options[0].value == 'all') {
-        if (interaction.data.options.length == 2 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536) {
-          group(interaction.id, interaction.token, true, interaction.data.options[1].value);
-        } else if (interaction.data.options.length == 3 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536 && interaction.data.options[2].value >= 0 && interaction.data.options[2].value <= 255) {
-          group(interaction.id, interaction.token, true, interaction.data.options[1].value, interaction.data.options[2].value);
-        } else if (interaction.data.options.length == 4 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536 && interaction.data.options[2].value >= 0 && interaction.data.options[2].value <= 255 && interaction.data.options[3].value >= 0 && interaction.data.options[3].value <= 255) {
-          group(interaction.id, interaction.token, true, interaction.data.options[1].value, interaction.data.options[2].value, interaction.data.options[3].value);
-        } else reply(interaction.id, interaction.token, `Invalid arguments`);
-        return;
-      } else {
-        if (isNaN(interaction.data.options[0].value)) return reply(interaction.id, interaction.token, `Invalid arguments`);
-        if (interaction.data.options.length == 2 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536) {
-          light(interaction.id, interaction.token, true, Math.floor(interaction.data.options[0].value), interaction.data.options[1].value);
-        } else if (interaction.data.options.length == 3 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536 && interaction.data.options[2].value >= 0 && interaction.data.options[2].value <= 255) {
-          light(interaction.id, interaction.token, true, Math.floor(interaction.data.options[0].value), interaction.data.options[1].value, interaction.data.options[2].value);
-        } else if (interaction.data.options.length == 4 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536 && interaction.data.options[2].value >= 0 && interaction.data.options[2].value <= 255 && interaction.data.options[3].value >= 0 && interaction.data.options[3].value <= 255) {
-          light(interaction.id, interaction.token, true, Math.floor(interaction.data.options[0].value), interaction.data.options[1].value, interaction.data.options[2].value, interaction.data.options[3].value);
-        } else reply(interaction.id, interaction.token, `Invalid arguments`);
-      }
-    } else return eReply(interaction.id, interaction.token, `You need the \`${config.role_name}\` role to use this`);
+  try {
+    if (interaction.data.name == 'on') {
+      if (interaction.member.roles.get(config.role_id)) {
+        if (interaction.data.options[0].value == 'all') {
+          group(interaction.id, interaction.token, true);
+          return;
+        } else {
+          if (isNaN(interaction.data.options[0].value)) return reply(interaction.id, interaction.token, `Invalid arguments`);
+          if (interaction.data.options[0].value >= 0 && interaction.data.options[0].value <= 4) {
+            light(interaction.id, interaction.token, true, Math.floor(interaction.data.options[1].value));
+          } else return reply(interaction.id, interaction.token, `Invalid arguments`);
+        }
+      } else return eReply(interaction.id, interaction.token, `You need the \`${config.role_name}\` role to use this`);
+    } else if (interaction.data.name == 'off') {
+      if (interaction.member.roles.get(config.role_id)) {
+        if (interaction.data.options[0].value == 'all') {
+          group(interaction.id, interaction.token, false);
+          return;
+        } else {
+          if (isNaN(interaction.data.options[0].value)) return reply(interaction.id, interaction.token, `Invalid arguments`);
+          if (interaction.data.options[0].value >= 0 && interaction.data.options[0].value <= 4) {
+            light(interaction.id, interaction.token, false, Math.floor(interaction.data.options[0].value));
+          } else return reply(interaction.id, interaction.token, `Invalid arguments`);
+        }
+      } else return eReply(interaction.id, interaction.token, `You need the \`${config.role_name}\` role to use this`);
+    } else if (interaction.data.name == 'color') {
+      if (interaction.member.roles.get(config.role_id)) {
+        if (interaction.data.options[0].value == 'all') {
+          if (interaction.data.options.length == 2 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536) {
+            group(interaction.id, interaction.token, true, interaction.data.options[1].value);
+          } else if (interaction.data.options.length == 3 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536 && interaction.data.options[2].value >= 0 && interaction.data.options[2].value <= 255) {
+            group(interaction.id, interaction.token, true, interaction.data.options[1].value, interaction.data.options[2].value);
+          } else if (interaction.data.options.length == 4 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536 && interaction.data.options[2].value >= 0 && interaction.data.options[2].value <= 255 && interaction.data.options[3].value >= 0 && interaction.data.options[3].value <= 255) {
+            group(interaction.id, interaction.token, true, interaction.data.options[1].value, interaction.data.options[2].value, interaction.data.options[3].value);
+          } else reply(interaction.id, interaction.token, `Invalid arguments`);
+          return;
+        } else {
+          if (isNaN(interaction.data.options[0].value)) return reply(interaction.id, interaction.token, `Invalid arguments`);
+          if (interaction.data.options.length == 2 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536) {
+            light(interaction.id, interaction.token, true, Math.floor(interaction.data.options[0].value), interaction.data.options[1].value);
+          } else if (interaction.data.options.length == 3 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536 && interaction.data.options[2].value >= 0 && interaction.data.options[2].value <= 255) {
+            light(interaction.id, interaction.token, true, Math.floor(interaction.data.options[0].value), interaction.data.options[1].value, interaction.data.options[2].value);
+          } else if (interaction.data.options.length == 4 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536 && interaction.data.options[2].value >= 0 && interaction.data.options[2].value <= 255 && interaction.data.options[3].value >= 0 && interaction.data.options[3].value <= 255) {
+            light(interaction.id, interaction.token, true, Math.floor(interaction.data.options[0].value), interaction.data.options[1].value, interaction.data.options[2].value, interaction.data.options[3].value);
+          } else reply(interaction.id, interaction.token, `Invalid arguments`);
+        }
+      } else return eReply(interaction.id, interaction.token, `You need the \`${config.role_name}\` role to use this`);
+    }
+  } catch (err) {
+    console.warn(err);
   }
 });
 
