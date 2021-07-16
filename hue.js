@@ -152,7 +152,7 @@ client.ws.on('INTERACTION_CREATE', interaction => {
         } else {
           if (isNaN(interaction.data.options[0].value)) return reply(interaction.id, interaction.token, `Invalid arguments`);
           if (interaction.data.options[0].value >= 0 && interaction.data.options[0].value <= 4) {
-            light(interaction.id, interaction.token, true, Math.floor(interaction.data.options[1].value));
+            light(interaction.id, interaction.token, true, Math.floor(interaction.data.options[0].value));
           } else return reply(interaction.id, interaction.token, `Invalid arguments`);
         }
       } else return eReply(interaction.id, interaction.token, `You need the \`${config.role_name}\` role to use this`);
