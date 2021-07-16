@@ -145,7 +145,7 @@ client.ws.on('INTERACTION_CREATE', interaction => {
   console.log(interaction.data.options);
   try {
     if (interaction.data.name == 'on') {
-      if (interaction.member.roles.get(config.role_id)) {
+      if (interaction.member.roles.cache.get(config.role_id)) {
         if (interaction.data.options[0].value == 'all') {
           group(interaction.id, interaction.token, true);
           return;
@@ -157,7 +157,7 @@ client.ws.on('INTERACTION_CREATE', interaction => {
         }
       } else return eReply(interaction.id, interaction.token, `You need the \`${config.role_name}\` role to use this`);
     } else if (interaction.data.name == 'off') {
-      if (interaction.member.roles.get(config.role_id)) {
+      if (interaction.member.roles.cache.get(config.role_id)) {
         if (interaction.data.options[0].value == 'all') {
           group(interaction.id, interaction.token, false);
           return;
@@ -169,7 +169,7 @@ client.ws.on('INTERACTION_CREATE', interaction => {
         }
       } else return eReply(interaction.id, interaction.token, `You need the \`${config.role_name}\` role to use this`);
     } else if (interaction.data.name == 'color') {
-      if (interaction.member.roles.get(config.role_id)) {
+      if (interaction.member.roles.cache.get(config.role_id)) {
         if (interaction.data.options[0].value == 'all') {
           if (interaction.data.options.length == 2 && interaction.data.options[1].value >= 0 && interaction.data.options[1].value <= 65536) {
             group(interaction.id, interaction.token, true, interaction.data.options[1].value);
